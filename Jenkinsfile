@@ -1,7 +1,3 @@
-// Global variables
-def appVersion = ''
-def deployEnvironment = ''
-
 pipeline {
     agent { label 'AGENT-1' }
 

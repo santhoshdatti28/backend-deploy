@@ -1,7 +1,30 @@
-kind: ConfigMap
-apiVersion: v1
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: backend
   namespace: expense
-data:
-  DB_HOST: {{ .Values.configmap.db_host }}
+  # labels of deployment resource
+  labels:
+    app: backend
+    tier: backend
+    project: expense
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+      tier: backend
+      project: expense
+  template:
+    metadata:
+      labels:
+        app: backend
+        tier: backend
+        project: expense
+    spec:
+      containers:
+      - name: nginx
+        image: "{{ .Values.deployment.imageURL }}:{{ .Values.deployment.version }}"
+        envFrom:
+        - configMapRef:
+            name: backend
