@@ -43,37 +43,6 @@ pipeline {
                 }
             }
         }
-        stage('Functional Tests') {
-            when{
-                expression { params.deploy_to == 'dev'}
-            }
-            
-            steps {
-                script{
-                    
-                        sh """
-                            echo "functional tests will be performed after DEV deployment. Usual;y these are automated selenium test cases written by testing team. If these test cases are failed pipeline also fails"
-                        """
-                    
-                }
-            }
-        }
-
-        stage('Functional Tests') {
-            when{
-                expression { params.deploy_to == 'dev'}
-            }
-            
-            steps {
-                script{
-                    
-                        sh """
-                            echo "functional tests will be performed after DEV deployment. Usual;y these are automated selenium test cases written by testing team. If these test cases are failed pipeline also fails"
-                        """
-                    
-                }
-            }
-        }
         
     }
     post { 
